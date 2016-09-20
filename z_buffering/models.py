@@ -6,6 +6,7 @@ from django.db import models
 
 class FurnitureAngle(models.Model):
     picture_path = models.CharField(max_length=200)
+    small_picture_path = models.CharField(max_length=200)
     name = models.CharField(max_length=30)
     width = models.PositiveIntegerField(default=0)
     height = models.PositiveIntegerField(default=0)
