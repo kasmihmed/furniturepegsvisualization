@@ -20,6 +20,7 @@
 	var furnitures= [ {% for furniture in furnitures %}
 	{'name':'{{furniture.name}}',
 	 'path':'{{furniture.picture_path}}',
+	 'small_path':'{{furniture.small_picture_path}}',
 	 'width': '{{furniture.width}}',
 	 'height' : '{{furniture.height}}',
 	 'peg_positions_x' : '{{furniture.peg_positions_x}}',
@@ -29,7 +30,8 @@
 
 	var pegs = [ {% for peg in pegs %}
 	{'name':'{{peg.name}}',
-	 'path':'{{peg.picture_path}}'	},
+	 'path':'{{peg.picture_path}}',
+	 'small_path':'{{peg.small_picture_path}}'},
 	{% endfor %}];
 
 </script>
@@ -43,7 +45,7 @@
 
 	{% for furniture in furnitures|slice:":3" %}
 	<div class="large-3 medium-3 columns" style="margin-left:20px;" onclick="select_furniture_svg('{{furniture.name}}')">
-			<img class="thumbnail" src="{{furniture.picture_path}}" alt="{{furniture.name}}">
+			<img class="thumbnail" src="{{furniture.small_picture_path}}" alt="{{furniture.name}}">
 		</div>
 	{% endfor %}
 
@@ -79,7 +81,7 @@
 	</div>
 	{% for peg in pegs|slice:":8" %}
 	<div class="large-1 medium-1 columns" style="margin-left:20px;" onclick="select_peg_svg('{{peg.name}}')">
-		<img class="thumbnail" src="{{peg.picture_path}}" alt="{{peg.name}}">
+		<img class="thumbnail" src="{{peg.small_picture_path}}" alt="{{peg.name}}">
 	</div>
 	{% endfor %}
 
