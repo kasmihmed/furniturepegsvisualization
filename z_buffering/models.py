@@ -19,6 +19,7 @@ class FurnitureAngle(models.Model):
 
 class PegAngle(models.Model):
     picture_path = models.CharField(max_length=200)
+    small_picture_path = models.CharField(max_length=200)
     name = models.CharField(max_length=30)
 
     def __unicode__(self):
