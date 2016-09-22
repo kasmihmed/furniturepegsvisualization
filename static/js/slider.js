@@ -34,10 +34,10 @@ var img_elt;
 for (furniture_elt in sliced_furniture)
 {
     console.log(furniture_elt);
-    console.log(sliced_furniture[furniture_elt].path);
+    console.log(sliced_furniture[furniture_elt].small_path);
     img_elt = $("#furniture_slider").children()[parseInt(furniture_elt)+1].children[0];
-    img_elt.src = furnitures[gb_max_furniture_slider+parseInt(furniture_elt)+1].path;
-    img_elt.alt = furnitures[gb_max_furniture_slider+parseInt(furniture_elt)+1].name;
+    img_elt.src = furnitures[gb_max_furniture_slider+parseInt(furniture_elt)+1].small_path;
+    img_elt.alt = furnitures[gb_max_furniture_slider+parseInt(furniture_elt)+1].small_path;
     //$("#furniture_slider").children()[parseInt(furniture_elt)+1].onclick = null;
     if(type=='canvas')
     {
@@ -97,9 +97,9 @@ var img_elt;
 for (peg_elt in sliced_peg)
 {
     console.log(peg_elt);
-    console.log(sliced_peg[peg_elt].path);
+    console.log(sliced_peg[peg_elt].small_path);
     img_elt = $("#peg_slider").children()[parseInt(peg_elt)+1].children[0];
-    img_elt.src = pegs[gb_max_peg_slider+parseInt(peg_elt)+1].path;
+    img_elt.src = pegs[gb_max_peg_slider+parseInt(peg_elt)+1].small_path;
     img_elt.alt = pegs[gb_max_peg_slider+parseInt(peg_elt)+1].name;
     if (type == 'canvas')
     {
@@ -154,8 +154,8 @@ var sliced_peg = pegs.slice(gb_min_peg_slider-8,gb_min_peg_slider);
 for (peg_elt in sliced_peg)
 {
     console.log(peg_elt);
-    console.log(sliced_peg[peg_elt].path);
-    $("#peg_slider").children()[parseInt(peg_elt)+1].children[0].src=pegs[gb_min_peg_slider-(8-parseInt(peg_elt))].path
+    console.log(sliced_peg[peg_elt].small_path);
+    $("#peg_slider").children()[parseInt(peg_elt)+1].children[0].src=pegs[gb_min_peg_slider-(8-parseInt(peg_elt))].small_path
     if (type == 'canvas')
     {
         $("#peg_slider").children()[parseInt(peg_elt)+1].setAttribute('onclick', "draw_scene('".concat(pegs[gb_min_peg_slider+parseInt(peg_elt)-8].name,"','peg');"));
@@ -200,7 +200,7 @@ var sliced_furniture = furnitures.slice(gb_min_furniture_slider-3,gb_min_furnitu
 for (furniture_elt in sliced_furniture)
 {
     console.log(furniture_elt);
-    console.log(sliced_furniture[furniture_elt].path);
+    console.log(sliced_furniture[furniture_elt].small_path);
     if (type == 'canvas')
     {
         $("#furniture_slider").children()[parseInt(furniture_elt)+1].setAttribute('onclick', "draw_scene('".concat(furnitures[gb_min_furniture_slider-(3-parseInt(furniture_elt))].name,"','furniture');"));
@@ -214,7 +214,7 @@ for (furniture_elt in sliced_furniture)
     $("#furniture_slider").children()[parseInt(furniture_elt)+1].setAttribute('onclick', "get_z_buffer_img('".concat(furnitures[gb_min_furniture_slider-(3-parseInt(furniture_elt))].name,"','furniture');"));
     }
 
-    $("#furniture_slider").children()[parseInt(furniture_elt)+1].children[0].src=furnitures[gb_min_furniture_slider-(3-parseInt(furniture_elt))].path
+    $("#furniture_slider").children()[parseInt(furniture_elt)+1].children[0].src=furnitures[gb_min_furniture_slider-(3-parseInt(furniture_elt))].small_path
 
 
 
@@ -242,7 +242,7 @@ function select_furniture_svg(furniture_name)
 {
 selected_furniture = furnitures.filter(function (v){ return v.name == furniture_name ;})[0];
 console.log('selected :'+selected_furniture.name);
-change_furniture_svg(selected_furniture.path)
+change_furniture_svg(selected_furniture.small_path)
 
 }
 
@@ -250,7 +250,7 @@ function select_peg_svg(peg_name)
 {
 selected_peg = pegs.filter(function (v){ return v.name == peg_name ;})[0];
 console.log('selected :'+selected_peg.name);
-change_peg_svg(selected_peg.path)
+change_peg_svg(selected_peg.small_path)
 }
 
 
