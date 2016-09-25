@@ -242,7 +242,7 @@ function select_furniture_svg(furniture_name)
 {
 selected_furniture = furnitures.filter(function (v){ return v.name == furniture_name ;})[0];
 console.log('selected :'+selected_furniture.name);
-change_furniture_svg(selected_furniture.small_path)
+change_furniture_svg(selected_furniture.path)
 
 }
 
@@ -250,7 +250,7 @@ function select_peg_svg(peg_name)
 {
 selected_peg = pegs.filter(function (v){ return v.name == peg_name ;})[0];
 console.log('selected :'+selected_peg.name);
-change_peg_svg(selected_peg.small_path)
+change_peg_svg(selected_peg.path)
 }
 
 
