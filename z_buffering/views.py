@@ -27,8 +27,9 @@ def create_visualisation(request,furniture,peg):
     import os
     from PIL import Image
     response = HttpResponse(content_type="image/png")
-    if os.path.isfile(settings.PROJECT_ROOT+'static/img/visualization/'+furniture+"_"+peg+".png"):
-        image = Image.open(settings.PROJECT_ROOT+'static/img/visualization/'+furniture+"_"+peg+".png")
+    static_dir = os.path.join(settings.PROJECT_ROOT, "static").replace('\\', '/')
+    if os.path.isfile(static_dir+'/img/visualization/'+furniture+"_"+peg+".png"):
+        image = Image.open(static_dir+'/img/visualization/'+furniture+"_"+peg+".png")
         image.save(response, 'PNG', quality=100)
     else:
         thumb_handle = StringIO()
@@ -36,6 +37,6 @@ def create_visualisation(request,furniture,peg):
         peg = PegAngle.objects.get(name=peg)
         furniture = FurnitureAngle.objects.get(name=furniture)
         image=generate_visualization(furniture.picture_path, peg.picture_path)
-        image.save(settings.PROJECT_ROOT+'static/img/visualization/'+furniture.name+"_"+peg.name+".png")
+        image.save(static_dir+'/img/visualization/'+furniture.name+"_"+peg.name+".png")
         image.save(response, 'PNG', quality=100)
     return response

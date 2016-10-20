@@ -10,6 +10,7 @@
 </head>
 <body>
 <script>
+
 	var gb_selected_furniture = '' ;
 	var gb_selected_peg = '' ;
 	var gb_min_furniture_slider = 0 ;
@@ -62,9 +63,9 @@
 	<div class="row">
 	<div class="large-8 medium-8 small-centered medium-centered large-centered columns" style="margin:auto;">
 		<svg id="mysvg" width="840px" height="410px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
-			<image xlink:href="{% static "img/main_images/sofa/Ikea_Tidafors.png" %}" x="0" y="0" width="810px" height="383px"/>
-			<image xlink:href="{% static "img/main_images/pegs/Aldor_teak.png" %}" x="165" y="308" width="52px" height="60px"/>
-			<image xlink:href="{% static "img/main_images/pegs/Aldor_teak.png" %}" x="594" y="308" width="52px" height="60px"/>
+			<image id="furniture_svg_main" xlink:href="{% static "img/main_images/sofa/Ikea_Tidafors.png" %}" x="0" y="0" width="810px" height="383px"/>
+			<image id="peg_svg_left" xlink:href="{% static "img/main_images/pegs/Aldor_teak.png" %}" x="165" y="308" width="52px" height="60px"/>
+			<image id="peg_svg_right" xlink:href="{% static "img/main_images/pegs/Aldor_teak.png" %}" x="594" y="308" width="52px" height="60px"/>
 			</svg>
 </div>
 </div>
@@ -97,6 +98,10 @@
 
 		<script src="{% static "js/svg_script.js" %}"></script>
     <script src="{% static "js/vendor/jquery.js" %}"></script>
+<script>
+	$("#furniture_svg_main").load(function(){console.log("its loaded");})
+
+</script>
     <script src="{% static "js/vendor/what-input.js" %}"></script>
     <script src="{% static "js/vendor/foundation.js" %}"></script>
     <script src="{% static "js/app.js" %}"></script>
