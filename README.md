@@ -6,7 +6,10 @@ how to install
 ----------------
 - install python : [link](https://www.python.org/downloads/)
 - install pip : [link](https://packaging.python.org/install_requirements_linux/#installing-pip-setuptools-wheel-with-linux-package-managers)
-- go to the project directory and in the terminal type :
+- clone the project
+- mkvirtualenv pegs (optional: to create a virtual environment)
+- workon pegs (optional: to activate the virtual environment created)
+- install the requirement files :
 pip install -r requirements.txt
 - create the database tables :
 
