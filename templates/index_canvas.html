@@ -26,8 +26,8 @@
 	 'small_path':'{{furniture.small_picture_path}}',
 	 'width': '{{furniture.width}}',
 	 'height' : '{{furniture.height}}',
-	 'peg_positions_x' : '{{furniture.peg_positions_x}}',
-	 'peg_positions_y' : '{{furniture.peg_positions_y}}'
+	 'right_peg_positions_x' : '{{furniture.right_peg_positions_x}}',
+	 'left_peg_positions_x' : '{{furniture.left_peg_positions_x}}'
 	},
 	{% endfor %}];
 
@@ -46,11 +46,11 @@
 		</div>
 
 		{% for furniture in furnitures|slice:":3" %}
-	<div class="large-3 medium-3 {% if forloop.last %} last-slider-0 {% endif%} columns" style="margin-left:20px;"  onclick="draw_scene('{{furniture.name}}','furniture')">
+	<div class="large-3 medium-3 {% if forloop.last %} last-slider-0 {% endif%} columns" id="furniture-position-{% cycle '1' '2' '3' %}" style="margin-left:20px;"  onclick="draw_scene('{{furniture.name}}','furniture')">
 			<img class="thumbnail" src="{{furniture.small_picture_path}}" alt="{{furniture.name}}">
 		</div>
 	{% endfor %}
-		<div class="large-1 medium-1 columns" onclick="get_next_furnitures('canvas')">
+		<div class="large-1 medium-1 columns" onclick="get_next_furnitures('canvas')" id="slider-top-right-button">
 		<div class="slider-right-button">
 			<img src="{% static "img/slider_images/arrow_R.svg" width="100px" %}" style="float:right;margin-top:40px;">
 		</div>
@@ -67,17 +67,17 @@
 
 <div class="row" style="margin-bottom:10px;" id="peg_slider">
 	<div class="large-1 medium-1 columns" onclick="get_previous_pegs('canvas')">
-		<div class="slider-left-button">
+		<div class="slider-left-button" id="slider-bottom-left-button">
 			<img src="" width="100px" style="float:left;">
 		</div>
 	</div>
 	{% for peg in pegs|slice:":8" %}
-		<div class="large-1 medium-1 columns" style="margin-left:20px;" onclick="draw_scene('{{peg.name}}','peg')">
+		<div class="large-1 medium-1 columns" id="peg-position-{% cycle '1' '2' '3' '4' '5' '6' '7' '8' %}" style="margin-left:20px;" onclick="draw_scene('{{peg.name}}','peg')">
 			<img class="thumbnail" src="{{peg.small_picture_path}}" alt="{{peg.name}}">
 		</div>
 		{% endfor %}
 	<div class="large-1 medium-1 columns" onclick="get_next_pegs('canvas')">
-	<div class="slider-right-button" >
+	<div class="slider-right-button" id="slider-bottom-right-button">
 		<img src="{% static "img/slider_images/arrow_R.svg" %}" width="100px" style="float:right;">
 	</div>
 </div>
@@ -90,5 +90,6 @@
     <script src="{% static "js/vendor/foundation.js" %}"></script>
     <script src="{% static "js/app.js" %}"></script>
     <script src="{% static "js/slider.js" %}"></script>
+    <script src="{% static "js/test_runner.js" %}"></script>
 </body>
 </html>
