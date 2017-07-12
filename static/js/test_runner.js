@@ -10,7 +10,7 @@ function select_element(element_id)
            console.log('done with lower slider') ;
         }
         else{
-            get_next_pegs('canvas');
+            get_next_pegs(rendering_type);
         }
     }
     else{
@@ -27,7 +27,7 @@ function furniture_selection_loop() {
     peg_index=0;
     if (furniture_index>0){
     while(slider_action<slider_reverse_elements){
-        get_previous_pegs('canvas');
+        get_previous_pegs(rendering_type);
         slider_action++;
         }
     slider_action=0;}
@@ -39,7 +39,7 @@ function furniture_selection_loop() {
     furniture_index++;
     if( furniture_index < furnitures.length ){
 
-            setTimeout( peg_selection_loop, 500 );
+            setTimeout( peg_selection_loop, 2500 );
 
     }
 }
@@ -57,17 +57,17 @@ function peg_selection_loop(){
 
     if (peg_index%8 ==0 && peg_index!=0){
             //click on the next button in the slider
-            setTimeout( peg_selection_loop, 500 );
+            setTimeout( peg_selection_loop, 2500 );
         }
         else{
-        setTimeout( peg_selection_loop, 500 );
+        setTimeout( peg_selection_loop, 2500 );
     }
     }
     if (peg_index == pegs.length && furniture_index!=furnitures.length){
-        setTimeout( furniture_selection_loop, 500 );
+        setTimeout( furniture_selection_loop, 2500 );
     }
 
 }
-//window.onload = furniture_selection_loop();
+window.onload = furniture_selection_loop();
 
 
