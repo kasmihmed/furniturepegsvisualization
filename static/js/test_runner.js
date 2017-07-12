@@ -39,7 +39,7 @@ function furniture_selection_loop() {
     furniture_index++;
     if( furniture_index < furnitures.length ){
 
-            setTimeout( peg_selection_loop, 2500 );
+            setTimeout( peg_selection_loop, 1500 );
 
     }
 }
@@ -57,14 +57,14 @@ function peg_selection_loop(){
 
     if (peg_index%8 ==0 && peg_index!=0){
             //click on the next button in the slider
-            setTimeout( peg_selection_loop, 2500 );
+            setTimeout( peg_selection_loop, 1500 );
         }
         else{
-        setTimeout( peg_selection_loop, 2500 );
+        setTimeout( peg_selection_loop, 1500 );
     }
     }
     if (peg_index == pegs.length && furniture_index!=furnitures.length){
-        setTimeout( furniture_selection_loop, 2500 );
+        setTimeout( furniture_selection_loop, 1500 );
     }
 
 }
