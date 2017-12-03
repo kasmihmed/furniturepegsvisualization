@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+import furniturepegsvisualization
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -24,9 +24,9 @@ SECRET_KEY = 'a9^)-#28dto$y#3or)ptcmhufkf9_)b!3676dy-5n&hen1g+#x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SQL_DEBUG = False
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'z_buffering',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,15 +48,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'furniturepegsvisualization.middlewares.MemoryUsageMiddleware',
 ]
 
 ROOT_URLCONF = 'furniturepegsvisualization.urls'
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))+ '/../'
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/../'
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'),
+    os.path.join(PROJECT_ROOT, 'templates').replace('\\', '/'),
 )
-
 
 TEMPLATES = [
     {
@@ -76,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'furniturepegsvisualization.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -86,7 +85,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -106,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -120,7 +117,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -129,15 +125,48 @@ STATIC_URL = '/static/'
 # default static files settings for PythonAnywhere.
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
 MEDIA_DIRS = (
-    os.path.join(PROJECT_ROOT, 'media').replace('\\','/'),
+    os.path.join(PROJECT_ROOT, 'media').replace('\\', '/'),
 )
 STATIC_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static').replace('\\','/'),
+    os.path.join(PROJECT_ROOT, 'static').replace('\\', '/'),
 )
 MEDIA_ROOT = MEDIA_DIRS
 MEDIA_URL = '/media/'
-#STATIC_ROOT = STATIC_DIRS
+# STATIC_ROOT = STATIC_DIRS
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, "static").replace('\\','/'),
-]
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, "static").replace('\\', '/'),
+)
+
+# LOGGING
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './debug.log',
+        }, 'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'furniturepegsvisualization.middlewares': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO'
+        },
+        'django.db.backends': {
+            'handlers': [],  # Quiet by default!
+            'propagate': False,
+            'level': 'DEBUG',
+        },
+    },
+}
