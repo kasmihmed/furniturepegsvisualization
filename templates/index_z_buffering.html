@@ -17,6 +17,7 @@ var rendering_type = 'z_buffer';
 	var gb_max_furniture_slider = 2 ;
 	var gb_min_peg_slider = 0 ;
 	var gb_max_peg_slider = 7 ;
+	var memory_log =[];
 	var furnitures= [ {% for furniture in furnitures %}
 	{'name':'{{furniture.name}}',
 	 'path':'{{furniture.picture_path}}',

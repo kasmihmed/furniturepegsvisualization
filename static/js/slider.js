@@ -33,8 +33,8 @@ var sliced_furniture = furnitures.slice(gb_max_furniture_slider+1,gb_max_furnitu
 var img_elt;
 for (furniture_elt in sliced_furniture)
 {
-    console.log(furniture_elt);
-    console.log(sliced_furniture[furniture_elt].small_path);
+    //console.log(furniture_elt);
+    //console.log(sliced_furniture[furniture_elt].small_path);
     img_elt = $("#furniture_slider").children()[parseInt(furniture_elt)+1].children[0];
     img_elt.src = furnitures[gb_max_furniture_slider+parseInt(furniture_elt)+1].small_path;
     img_elt.alt = furnitures[gb_max_furniture_slider+parseInt(furniture_elt)+1].small_path;
@@ -96,8 +96,8 @@ var sliced_peg = pegs.slice(gb_max_peg_slider+1,gb_max_peg_slider+9);
 var img_elt;
 for (peg_elt in sliced_peg)
 {
-    console.log(peg_elt);
-    console.log(sliced_peg[peg_elt].small_path);
+    //console.log(peg_elt);
+    //console.log(sliced_peg[peg_elt].small_path);
     img_elt = $("#peg_slider").children()[parseInt(peg_elt)+1].children[0];
     img_elt.src = pegs[gb_max_peg_slider+parseInt(peg_elt)+1].small_path;
     img_elt.alt = pegs[gb_max_peg_slider+parseInt(peg_elt)+1].name;
@@ -153,8 +153,8 @@ var peg_elt;
 var sliced_peg = pegs.slice(gb_min_peg_slider-8,gb_min_peg_slider);
 for (peg_elt in sliced_peg)
 {
-    console.log(peg_elt);
-    console.log(sliced_peg[peg_elt].small_path);
+    //console.log(peg_elt);
+    //console.log(sliced_peg[peg_elt].small_path);
     $("#peg_slider").children()[parseInt(peg_elt)+1].children[0].src=pegs[gb_min_peg_slider-(8-parseInt(peg_elt))].small_path
     if (type == 'canvas')
     {
@@ -199,8 +199,8 @@ var furniture_elt;
 var sliced_furniture = furnitures.slice(gb_min_furniture_slider-3,gb_min_furniture_slider);
 for (furniture_elt in sliced_furniture)
 {
-    console.log(furniture_elt);
-    console.log(sliced_furniture[furniture_elt].small_path);
+    //console.log(furniture_elt);
+    //console.log(sliced_furniture[furniture_elt].small_path);
     if (type == 'canvas')
     {
         $("#furniture_slider").children()[parseInt(furniture_elt)+1].setAttribute('onclick', "draw_scene('".concat(furnitures[gb_min_furniture_slider-(3-parseInt(furniture_elt))].name,"','furniture');"));
@@ -241,16 +241,18 @@ $("#furniture_slider").children()[4].children[0].children[0].src= "/static/img/s
 function select_furniture_svg(furniture_name)
 {
 selected_furniture = furnitures.filter(function (v){ return v.name == furniture_name ;})[0];
-console.log('selected :'+selected_furniture.name);
-change_furniture_svg(selected_furniture.path)
+//console.log('selected :'+selected_furniture.name);
+change_furniture_svg(selected_furniture.path);
 
 }
 
 function select_peg_svg(peg_name)
 {
+
 selected_peg = pegs.filter(function (v){ return v.name == peg_name ;})[0];
-console.log('selected :'+selected_peg.name);
-change_peg_svg(selected_peg.path)
+//console.log('selected :'+selected_peg.name);
+change_peg_svg(selected_peg.path);
+memory_log.push(window.performance.memory);
 }
 
 
@@ -277,7 +279,7 @@ if (type=='peg')
 {
     // draw the pegs
     selected_peg = pegs.filter(function (v){ return v.name == object_name ;})[0];
-    console.log('selected :'+selected_peg.name);
+    //console.log('selected :'+selected_peg.name);
     fill_pegs_canvas(selected_peg.path)
 
     // draw the furniture
@@ -289,7 +291,7 @@ if (type=='peg')
 else if (type=='furniture')
 {
     selected_furniture = furnitures.filter(function (v){ return v.name == object_name ;})[0];
-    console.log('selected :'+selected_furniture.name);
+    //console.log('selected :'+selected_furniture.name);
     // draw the pegs
     fill_pegs_canvas(gb_selected_peg);
     // draw the furniture
@@ -302,7 +304,9 @@ else if (type=='furniture')
 var finishTime = new Date().getTime();
 event_times.push(finishTime - startTime);
 
-console.log('time to show: '+String(finishTime - startTime))
+//console.log('time to show: '+String(finishTime - startTime));
+memory_log.push(window.performance.memory);
+
 }
 
 
@@ -332,5 +336,6 @@ if (type=='furniture')
 
 $("#z_buffer_img").children()[0].children[0].src = "/z_buffer/algo/furniture/"+gb_selected_furniture+"/peg/"+gb_selected_peg+"/";
 
+memory_log.push(window.performance.memory);
 
 }
