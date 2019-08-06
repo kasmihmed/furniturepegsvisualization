@@ -24,5 +24,5 @@ class MemoryUsageMiddleware(object):
         # SERVER REQUEST RESPONSE TIME
         response_time = (datetime.datetime.now() - request._time_received).total_seconds()
         # log the request/response data
-        logger.error(u'{};{};{};{}'.format(request.path, mem_diff, response_cpu_percent, response_time))
+        logger.error(u'{};{};{}'.format(mem_diff, cpu_diff, response_time))
         return response
