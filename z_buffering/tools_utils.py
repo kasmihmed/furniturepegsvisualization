@@ -23,23 +23,16 @@ def generate_visualization(furniture_path,peg_path):
     second_image = Image.open(settings.PROJECT_ROOT+peg_path[1:])
     #resize the pic
     second_image = second_image.resize([50,50],Image.ANTIALIAS)
-    #first_image_array = first_image.load()
     second_pix = np.array(second_image)
 
 
     def locate_in_main_frame(main_frame_array,image_array,location):
-        # need to think about the postions as translations
         for i in range(second_image.height):
             for j in range(second_image.width):
                 # check if the pixel is already filled
                 if (main_frame_array[i+location[0]][j+location[1]] == [255, 255, 255,   0]).all():
                     main_frame_array[i+location[0]][j+location[1]] = image_array[i][j]
         return main_frame_array
-
-    # second loop
-    # since we are going from cloose to far , we are drawing less
-
-
 
     img = locate_in_main_frame(first_pix,second_pix,(330,158))
     img = locate_in_main_frame(first_pix,second_pix,(330,658))
